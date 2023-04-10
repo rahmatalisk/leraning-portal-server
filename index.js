@@ -1,21 +1,10 @@
-const auth = require("json-server-auth");
-const jsonServer = require("json-server");
-
+const jsonServer = require("json-server"); // importing json-server library
 const server = jsonServer.create();
 const router = jsonServer.router("db.json");
 const middlewares = jsonServer.defaults();
-const port = process.env.PORT || 9000;
-
-// Bind the router db to the app
-server.db = router.db;
+const port = process.env.PORT || 9000; // you can use any port number here; i chose to use 3001
 
 server.use(middlewares);
-
-const rules = auth.rewriter({
-});
-
-server.use(rules);
-server.use(auth);
 server.use(router);
 
 server.listen(port);
